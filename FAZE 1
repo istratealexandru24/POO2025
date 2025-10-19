@@ -1,0 +1,88 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+
+//1: AparatDeSudura
+struct AparatDeSudura {
+    char* marca;
+    float putere;
+    int tensiune;
+};
+
+//2: InstalatieElectrica
+struct InstalatieElectrica {
+    char* tip;
+    float tensiune;
+    float frecventa;
+};
+
+//3: Ampermetru
+struct Ampermetru {
+    char* model;
+    float capacitate;
+    float precizie; 
+};
+
+//Afisare AparatDeSudura
+void afisareAparat(AparatDeSudura aparat) {
+    cout << endl << "Aparat de sudura marca " << aparat.marca
+        << " are o putere de " << aparat.putere << "W si functioneaza la o tensiune de "
+        << aparat.tensiune << "V.";
+}
+
+//Afisare InstalatieElectrica
+void afisareInstalatie(InstalatieElectrica instalatie) {
+    cout << endl << "Instalatia electrica de tip " << instalatie.tip
+        << " functioneaza la tensiunea de " << instalatie.tensiune
+        << "V si frecventa de " << instalatie.frecventa << "Hz.";
+}
+
+//Afisare Ampermetru
+void afisareAmpermetru(Ampermetru amp) {
+    cout << endl << "Ampermetrul model " << amp.model
+        << " are capacitatea de " << amp.capacitate << "A si precizia de "
+        << amp.precizie << "%.";
+}
+
+
+int main() {
+    cout << endl << "   -Inventar Echipamente-";
+
+    //AparatDeSudura
+    AparatDeSudura scula;
+    scula.marca = new char[strlen("DeWalt") + 1];
+    strcpy(scula.marca, "DeWalt");
+    scula.putere = 1500;
+    scula.tensiune = 230;
+    afisareAparat(scula);
+
+    //InstalatieElectrica
+    InstalatieElectrica instalatie;
+    instalatie.tip = new char[strlen("Industriala") + 1];
+    strcpy(instalatie.tip, "Industriala");
+    instalatie.tensiune = 400;
+    instalatie.frecventa = 50.0f;
+    afisareInstalatie(instalatie);
+
+    //Ampermetru
+    Ampermetru amp;
+    amp.model = new char[strlen("Hoff") + 1];
+    strcpy(amp.model, "Hoff");
+    amp.capacitate = 10;
+    amp.precizie = 0.5;
+    afisareAmpermetru(amp);
+
+
+
+    //Stergere memorie
+    delete[] scula.marca;
+    delete[] instalatie.tip;
+    delete[] amp.model;
+
+    cout << endl << "       -c'est fini-";
+
+    return 0;
+}
